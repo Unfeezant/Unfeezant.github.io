@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <pre>
+            <code>
+                import random
+import os
+import time
+# structure
+board = [
+         [' ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____\n'],#line1,
+         [['|    ','     ','     ','     ','     ','     ','|    ','|    ','|    ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|    ',' ____','     ','     ',' ____','     ','|____','|____','|____','|    ',' ____','     ','     ',' ____','     ','|\n']],# line2
+         [['|    ','|    ','|    ','     ','|    ','|    ','|    ','|    ','| /\\ ','|    ','|    ','|    ','     ','|    ','|    ','|\n'],
+          ['|    ','|____','|    ','     ','|____','|    ','|____','|    ','|_\\/_','|    ','|____','|    ','     ','|____','|    ','|\n']],#line3
+         [['|    ','     ','     ','     ','     ','     ','| /\\ ','|    ','|    ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|    ','     ','     ','     ','     ','     ','|_\\/_','|    ','|____','|    ','     ','     ','     ','     ','     ','|\n']],#line4
+         [['|    ','     ','     ','     ','     ','     ','|    ','|    ','|    ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|    ',' ____','     ','     ',' ____','     ','|____','|    ','|____','|    ',' ____','     ','     ',' ____','     ','|\n']],#line5
+         [['|    ','|    ','|    ','     ','|    ','|    ','|    ','|    ','|    ','|    ','|    ','|    ','     ','|    ','|    ','|\n'],
+          ['|    ','|____','|    ','     ','|____','|    ','|____','|    ','|____','|    ','|____','|    ','     ','|____','|    ','|\n']],#line6
+         [['|    ','     ','     ','     ','     ','     ','|    ','|    ','|    ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|____',' ____',' ____',' ____',' ____',' ____','|____','|____','|____','|____',' ____',' ____',' ____',' ____',' ____','|\n']],#line7
+         [['|    ','| /\\ ','|    ','|    ','|    ','|    ','|    ','     ','     ','|    ','|    ','|    ','| /\\ ','|    ','|    ','|\n'],
+          ['|____','|_\\/_','|____','|____','|____','|____','|    ',' _   ','   _ ','|____','|____','|____','|_\\/_','|____','|____','|\n']],#line8
+         [['|    ','|    ','     ','     ','     ','     ','| |_|','| ||\\','/||_ ','|    ','     ','     ','     ','     ','|    ','|\n'],
+          ['|____','|____',' ____',' ____',' ____',' ____','| | |','|_|| ',' ||_ ','|____',' ____',' ____',' ____',' ____','|____','|\n']],#line9
+         [['|    ','|    ','| /\\ ','|    ','|    ','|    ','|    ','     ','     ','|    ','|    ','|    ','|    ','| /\\ ','|    ','|\n'],
+          ['|____','|____','|_\\/_','|____','|____','|____','|____',' ____',' ____','|____','|____','|____','|____','|_\\/_','|____','|\n']],#line10
+         [['|    ','     ','     ','     ','     ','     ','|    ','|    ','|    ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|    ',' ____','     ','     ',' ____','     ','|____','|    ','|____','|    ',' ____','     ','     ',' ____','     ','|\n']],#line11
+         [['|    ','|    ','|    ','     ','|    ','|    ','|    ','|    ','|    ','|    ','|    ','|    ','     ','|    ','|    ','|\n'],
+          ['|    ','|____','|    ','     ','|____','|    ','|____','|    ','|____','|    ','|____','|    ','     ','|____','|    ','|\n']],#line12
+         [['|    ','     ','     ','     ','     ','     ','|    ','|    ','|    ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|    ','     ','     ','     ','     ','     ','|____','|    ','|____','|    ','     ','     ','     ','     ','     ','|\n']],#line13
+         [['|    ','     ','     ','     ','     ','     ','|    ','|    ','| /\\ ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|    ',' ____','     ','     ',' ____','     ','|____','|    ','|_\\/_','|    ',' ____','     ','     ',' ____','     ','|\n']],#line14
+         [['|    ','|    ','|    ','     ','|    ','|    ','| /\\ ','|    ','|    ','|    ','|    ','|    ','     ','|    ','|    ','|\n'],
+          ['|    ','|____','|    ','     ','|____','|    ','|_\\/_','|____','|____','|    ','|____','|    ','     ','|____','|    ','|\n']],#line15
+         [['|    ','     ','     ','     ','     ','     ','|    ','|    ','|    ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|____',' ____',' ____',' ____',' ____',' ____','|____','|____','|____','|____',' ____',' ____',' ____',' ____',' ____','|\n']]#line16
+         ]
+empty = [
+         [' ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____\n'],#line1,
+         [['|    ','     ','     ','     ','     ','     ','|    ','|    ','|    ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|    ',' ____','     ','     ',' ____','     ','|____','|____','|____','|    ',' ____','     ','     ',' ____','     ','|\n']],# line2
+         [['|    ','|    ','|    ','     ','|    ','|    ','|    ','|    ','| /\\ ','|    ','|    ','|    ','     ','|    ','|    ','|\n'],
+          ['|    ','|____','|    ','     ','|____','|    ','|____','|    ','|_\\/_','|    ','|____','|    ','     ','|____','|    ','|\n']],#line3
+         [['|    ','     ','     ','     ','     ','     ','| /\\ ','|    ','|    ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|    ','     ','     ','     ','     ','     ','|_\\/_','|    ','|____','|    ','     ','     ','     ','     ','     ','|\n']],#line4
+         [['|    ','     ','     ','     ','     ','     ','|    ','|    ','|    ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|    ',' ____','     ','     ',' ____','     ','|____','|    ','|____','|    ',' ____','     ','     ',' ____','     ','|\n']],#line5
+         [['|    ','|    ','|    ','     ','|    ','|    ','|    ','|    ','|    ','|    ','|    ','|    ','     ','|    ','|    ','|\n'],
+          ['|    ','|____','|    ','     ','|____','|    ','|____','|    ','|____','|    ','|____','|    ','     ','|____','|    ','|\n']],#line6
+         [['|    ','     ','     ','     ','     ','     ','|    ','|    ','|    ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|____',' ____',' ____',' ____',' ____',' ____','|____','|____','|____','|____',' ____',' ____',' ____',' ____',' ____','|\n']],#line7
+         [['|    ','| /\\ ','|    ','|    ','|    ','|    ','|    ','     ','     ','|    ','|    ','|    ','| /\\ ','|    ','|    ','|\n'],
+          ['|____','|_\\/_','|____','|____','|____','|____','|    ',' _   ','   _ ','|____','|____','|____','|_\\/_','|____','|____','|\n']],#line8
+         [['|    ','|    ','     ','     ','     ','     ','| |_|','| ||\\','/||_ ','|    ','     ','     ','     ','     ','|    ','|\n'],
+          ['|____','|____',' ____',' ____',' ____',' ____','| | |','|_|| ',' ||_ ','|____',' ____',' ____',' ____',' ____','|____','|\n']],#line9
+         [['|    ','|    ','| /\\ ','|    ','|    ','|    ','|    ','     ','     ','|    ','|    ','|    ','|    ','| /\\ ','|    ','|\n'],
+          ['|____','|____','|_\\/_','|____','|____','|____','|____',' ____',' ____','|____','|____','|____','|____','|_\\/_','|____','|\n']],#line10
+         [['|    ','     ','     ','     ','     ','     ','|    ','|    ','|    ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|    ',' ____','     ','     ',' ____','     ','|____','|    ','|____','|    ',' ____','     ','     ',' ____','     ','|\n']],#line11
+         [['|    ','|    ','|    ','     ','|    ','|    ','|    ','|    ','|    ','|    ','|    ','|    ','     ','|    ','|    ','|\n'],
+          ['|    ','|____','|    ','     ','|____','|    ','|____','|    ','|____','|    ','|____','|    ','     ','|____','|    ','|\n']],#line12
+         [['|    ','     ','     ','     ','     ','     ','|    ','|    ','|    ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|    ','     ','     ','     ','     ','     ','|____','|    ','|____','|    ','     ','     ','     ','     ','     ','|\n']],#line13
+         [['|    ','     ','     ','     ','     ','     ','|    ','|    ','| /\\ ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|    ',' ____','     ','     ',' ____','     ','|____','|    ','|_\\/_','|    ',' ____','     ','     ',' ____','     ','|\n']],#line14
+         [['|    ','|    ','|    ','     ','|    ','|    ','| /\\ ','|    ','|    ','|    ','|    ','|    ','     ','|    ','|    ','|\n'],
+          ['|    ','|____','|    ','     ','|____','|    ','|_\\/_','|____','|____','|    ','|____','|    ','     ','|____','|    ','|\n']],#line15
+         [['|    ','     ','     ','     ','     ','     ','|    ','|    ','|    ','|    ','     ','     ','     ','     ','     ','|\n'],
+          ['|____',' ____',' ____',' ____',' ____',' ____','|____','|____','|____','|____',' ____',' ____',' ____',' ____',' ____','|\n']]#line16
+         ]
+#TOKEN MODELS
+RED1 = ['|/R1\\','|\\__/']
+RED2 = ['|/R2\\','|\\__/']
+RED3 = ['|/R3\\','|\\__/']
+RED4 = ['|/R4\\','|\\__/']
+YELLOW1 = ['|/Y1\\','|\\__/']
+YELLOW2 = ['|/Y2\\','|\\__/']
+YELLOW3 = ['|/Y3\\','|\\__/']
+YELLOW4 = ['|/Y4\\','|\\__/']
+double_r = ['|/RR\\','|\\__/']
+double_y = ['|/YY\\','|\\__/']
+r_y = ['|/YR\\','|\\__/']
+triple_r = ['|/RR\\','|\\R_/']
+r2_y1 = ['|/RR\\','|\\Y_/']
+y2_r1 = ['|/YY\\','|\\R_/']
+triple_y = ['|/YY\\','|\\Y_/']
+quad_r = ['|/RR\\','|\\RR/']
+r3_y1 = ['|/RR\\','|\\RY/']
+r2_y2 = ['|/RR\\','|\\YY/']
+y3_r1 = ['|/YY\\','|\\YR/']
+quad_y = ['|/YY\\','|\\YY/']
+# TOKEN POSITIONS
+print('', end = '\n')
+R1 = 0
+R2 = 0
+R3 = 0
+R4 = 0
+Y1 = 0
+Y2 = 0
+Y3 = 0
+Y4 = 0
+turn = 1
+# CHECKING FOR SAFE SPOTS YELLOW
+def safe_yellow(x):
+    global R1,R2,R3,R4,Y1,Y2,Y3,Y4,turn
+    if x + dice not in [6, 14, 19, 27, 32, 40, 45, 53, 57, 58, 59, 60, 61, 62]:
+        cut_yellow(x)
+# CHECKING FOR SAFE SPOTS RED
+def safe_red(x):
+    global R1,R2,R3,R4,Y1,Y2,Y3,Y4,turn
+    if x + dice not in [6, 14, 19, 27, 32, 40, 45, 53, 57, 58, 59, 60, 61, 62]:
+        cut_red(x)
+# CUT YELLOW
+def cut_yellow(x):
+    global R1,R2,R3,R4,turn
+    if x + dice == R1 + 26 or x + dice + 26 == R1:
+        R1 = 0
+        turn = 3
+    if x + dice == R2 + 26 or x + dice + 26 == R2:
+        R2 = 0
+        turn = 3
+    if x + dice == R3 + 26 or x + dice + 26 == R3:
+        R3 = 0
+        turn = 3
+    if x + dice == R4 + 26 or x + dice + 26 == R4:
+        R4 = 0
+        turn = 3
+# CUT RED
+def cut_red(x):
+    global Y1,Y2,Y3,Y4,turn
+    if x + dice + 26 == Y1 or x + dice == Y1 + 26:
+        Y1 = 0
+        turn = 0
+    if x + dice + 26 == Y2 or x + dice == Y2 + 26:
+        Y2 = 0
+        turn = 0
+    if x + dice + 26 == Y3 or x + dice == Y3 + 26:
+        Y3 = 0
+        turn = 0
+    if x + dice + 26 == Y4 or x + dice == Y4 + 26:
+        Y4 = 0
+        turn = 0
+#RESET SQUARES RED
+def reset_red(x):
+    global board,empty,R1,R2,R3,R4,Y1,Y2,Y3,Y4
+    if x in [6, 7, 8, 9, 10]:
+        pos = x - 5
+        board[7][0][pos] = empty[7][0][pos]
+        board[7][1][pos] = empty[7][1][pos]
+    if x in [11, 12, 13, 14, 15, 16]:
+        deviation = (x - 11)
+        pos = 6 - deviation
+        board[pos][0][6] = empty[pos][0][6]
+        board[pos][1][6] = empty[pos][1][6]
+    if x == 17:
+        board[1][0][7] = empty[1][0][7]
+        board[1][1][7] = empty[1][1][7]
+    if x in [18, 19, 20, 21, 22, 23]:
+        pos = x - 17
+        board[pos][0][8] = empty[pos][0][8]
+        board[pos][1][8] = empty[pos][1][8]
+    if x in [24, 25, 26, 27, 28, 29]:
+        pos = x - 15
+        board[7][0][pos] = empty[7][0][pos]
+        board[7][1][pos] = empty[7][1][pos]
+    if x == 30:
+        board[8][0][14] = empty[8][0][14]
+        board[8][1][14] = empty[8][1][14]
+    if x in [31, 32, 33, 34, 35, 36]:
+        deviation = x - 31
+        pos = 14 - deviation
+        board[9][0][pos] = empty[9][0][pos]
+        board[9][1][pos] = empty[9][1][pos]
+    if x in [37, 38, 39, 40, 41, 42]:
+        pos = x - 27
+        board[pos][0][8] = empty[pos][0][8]
+        board[pos][1][8] = empty[pos][1][8]
+    if x == 43:
+        board[15][0][7] = empty[15][0][7]
+        board[15][1][7] = empty[15][1][7]
+    if x in [44, 45, 46, 47, 48, 49]:
+        deviation = x - 44
+        pos = 15 - deviation
+        board[pos][0][6] = empty[pos][0][6]
+        board[pos][1][6] = empty[pos][1][6]
+    if x in [50, 51, 52, 53, 54, 55]:
+        deviation = x - 50
+        pos = 5 - deviation
+        board[9][0][pos] = empty[9][0][pos]
+        board[9][1][pos] = empty[9][1][pos]
+    if x in [56, 57, 58, 59, 60, 61]:
+        pos = x - 56
+        board[8][0][pos] = empty[8][0][pos]
+        board[8][1][pos] = empty[8][1][pos]
+# RESET SQUARES YELLOW
+def reset_yellow(x):
+    global board, empty, R1, R2, R3, R4, Y1, Y2, Y3, Y4
+    if x in [6, 7, 8, 9, 10]:
+        deviation = x - 5
+        pos = 14 - deviation
+        board[9][0][pos] = empty[9][0][pos]
+        board[9][1][pos] = empty[9][1][pos]
+    if x in [11, 12, 13, 14, 15, 16]:
+        pos = x - 1
+        board[pos][0][8] = empty[pos][0][8]
+        board[pos][1][8] = empty[pos][1][8]
+    if x == 17:
+        board[15][0][7] = empty[15][0][7]
+        board[15][1][7] = empty[15][1][7]
+    if x in [18, 19, 20, 21, 22, 23]:
+        deviation = x - 18
+        pos = 15 - deviation
+        board[pos][0][6] = empty[pos][0][6]
+        board[pos][1][6] = empty[pos][1][6]
+    if x in [24, 25, 26, 27, 28, 29]:
+        deviation = x - 24
+        pos = 5 - deviation
+        board[9][0][pos] = empty[9][0][pos]
+        board[9][1][pos] = empty[9][1][pos]
+    if x == 30:
+        board[8][0][0] = empty[8][0][0]
+        board[8][1][0] = empty[8][1][0]
+    if x in [31, 32, 33, 34, 35, 36]:
+        pos = x - 31
+        board[7][0][pos] = empty[7][0][pos]
+        board[7][1][pos] = empty[7][1][pos]
+    if x in [37, 38, 39, 40, 41, 42]:
+        deviation = x - 37
+        pos = 6 - deviation
+        board[pos][0][6] = empty[pos][0][6]
+        board[pos][1][6] = empty[pos][1][6]
+    if x == 43:
+        board[1][0][7] = empty[1][0][7]
+        board[1][1][7] = empty[1][1][7]
+    if x in [44, 45, 46, 47, 48, 49]:
+        pos = x - 43
+        board[pos][0][8] = empty[pos][0][8]
+        board[pos][1][8] = empty[pos][1][8]
+    if x in [50, 51, 52, 53, 54, 55]:
+        pos = x - 41
+        board[7][0][pos] = empty[7][0][pos]
+        board[7][1][pos] = empty[7][1][pos]
+    if x in [56, 57, 58, 59, 60, 61]:
+        deviation = x - 56
+        pos = 14 - deviation
+        board[8][0][pos] = empty[8][0][pos]
+        board[8][1][pos] = empty[8][1][pos]
+# MOVEMENT RED
+def move_red(x,y):
+    global board,R1,R2,R3,R4,Y1,Y2,Y3,Y4
+    if x in [6, 7, 8, 9, 10]:
+        pos = x - 5
+        board[7][0][pos] = y[0]
+        board[7][1][pos] = y[1]
+    if x in [11, 12, 13, 14, 15, 16]:
+        deviation = (x - 11)
+        pos = 6 - deviation
+        board[pos][0][6] = y[0]
+        board[pos][1][6] = y[1]
+    if x == 17:
+        board[1][0][7] = y[0]
+        board[1][1][7] = y[1]
+    if x in [18, 19, 20, 21, 22, 23]:
+        pos = x - 17
+        board[pos][0][8] = y[0]
+        board[pos][1][8] = y[1]
+    if x in [24, 25, 26, 27, 28, 29]:
+        pos = x - 15
+        board[7][0][pos] = y[0]
+        board[7][1][pos] = y[1]
+    if x == 30:
+        board[8][0][14] = y[0]
+        board[8][1][14] = y[1]
+    if x in [31, 32, 33, 34, 35, 36]:
+        deviation = x - 31
+        pos = 14 - deviation
+        board[9][0][pos] = y[0]
+        board[9][1][pos] = y[1]
+    if x in [37, 38, 39, 40, 41, 42]:
+        pos = x - 27
+        board[pos][0][8] = y[0]
+        board[pos][1][8] = y[1]
+    if x == 43:
+        board[15][0][7] = y[0]
+        board[15][1][7] = y[1]
+    if x in [44, 45, 46, 47, 48, 49]:
+        deviation = x - 44
+        pos = 15 - deviation
+        board[pos][0][6] = y[0]
+        board[pos][1][6] = y[1]
+    if x in [50, 51, 52, 53, 54, 55]:
+        deviation = x - 50
+        pos = 5 - deviation
+        board[9][0][pos] = y[0]
+        board[9][1][pos] = y[1]
+    if x in [56, 57, 58, 59, 60, 61]:
+        pos = x - 56
+        board[8][0][pos] = y[0]
+        board[8][1][pos] = y[1]
+#MOVEMENT YELLOW
+def move_yellow(x,y):
+    global board, R1, R2, R3, R4, Y1, Y2, Y3, Y4
+    if x in [6, 7, 8, 9, 10]:
+        deviation = x - 5
+        pos = 14 - deviation
+        board[9][0][pos] = y[0]
+        board[9][1][pos] = y[1]
+    if x in [11, 12, 13, 14, 15, 16]:
+        pos = x - 1
+        board[pos][0][8] = y[0]
+        board[pos][1][8] = y[1]
+    if x == 17:
+        board[15][0][7] = y[0]
+        board[15][1][7] = y[1]
+    if x in [18, 19, 20, 21, 22, 23]:
+        deviation = x - 18
+        pos = 15 - deviation
+        board[pos][0][6] = y[0]
+        board[pos][1][6] = y[1]
+    if x in [24, 25, 26, 27, 28, 29]:
+        deviation = x - 24
+        pos = 5 - deviation
+        board[9][0][pos] = y[0]
+        board[9][1][pos] = y[1]
+    if x == 30:
+        board[8][0][0] = y[0]
+        board[8][1][0] = y[1]
+    if x in [31, 32, 33, 34, 35, 36]:
+        pos = x - 31
+        board[7][0][pos] = y[0]
+        board[7][1][pos] = y[1]
+    if x in [37, 38, 39, 40, 41, 42]:
+        deviation = x - 37
+        pos = 6 - deviation
+        board[pos][0][6] = y[0]
+        board[pos][1][6] = y[1]
+    if x == 43:
+        board[1][0][7] = y[0]
+        board[1][1][7] = y[1]
+    if x in [44, 45, 46, 47, 48, 49]:
+        pos = x - 43
+        board[pos][0][8] = y[0]
+        board[pos][1][8] = y[1]
+    if x in [50, 51, 52, 53, 54, 55]:
+        pos = x - 41
+        board[7][0][pos] = y[0]
+        board[7][1][pos] = y[1]
+    if x in [56, 57, 58, 59, 60, 61]:
+        deviation = x - 56
+        pos = 14 - deviation
+        board[8][0][pos] = y[0]
+        board[8][1][pos] = y[1]
+# A FUNCTION FOR FULL MOVEMENT
+def start():
+    global R1,R2,R3,R4,Y1,Y2,Y3,Y4,board,RED1,RED2,RED3,RED4,YELLOW1,YELLOW2,YELLOW3,YELLOW4,empty,token,dice
+    if R1 == 0:
+        board[2][0][1] = RED1[0]
+        board[2][1][1] = RED1[1]
+    if R2 == 0:
+        board[2][0][4] = RED2[0]
+        board[2][1][4] = RED2[1]
+    if R3 == 0:
+        board[5][0][1] = RED3[0]
+        board[5][1][1] = RED3[1]
+    if R4 == 0:
+        board[5][0][4] = RED4[0]
+        board[5][1][4] = RED4[1]
+    if Y1 == 0:
+        board[11][0][10] = YELLOW1[0]
+        board[11][1][10] = YELLOW1[1]
+    if Y2 == 0:
+        board[11][0][13] = YELLOW2[0]
+        board[11][1][13] = YELLOW2[1]
+    if Y3 == 0:
+        board[14][0][10] = YELLOW3[0]
+        board[14][1][10] = YELLOW3[1]
+    if Y4 == 0:
+        board[14][0][13] = YELLOW4[0]
+        board[14][1][13] = YELLOW4[1]
+    if token == 'R1' or R1 >= 0:
+        move_red(R1,RED1)
+    if token == 'R2' or R2 >= 0:
+        move_red(R2,RED2)
+    if token == 'R3' or R3 >= 0:
+        move_red(R3,RED3)
+    if token == 'R4' or R4 >= 0:
+        move_red(R4,RED4)
+    if token == 'Y1' or Y1 >= 0:
+        move_yellow(Y1, YELLOW1)
+    if token == 'Y2' or Y2 >= 0:
+        move_yellow(Y2, YELLOW2)
+    if token == 'Y3' or Y3 >= 0:
+        move_yellow(Y3, YELLOW3)
+    if token == 'Y4' or Y4 >= 0:
+        move_yellow(Y4, YELLOW4)
+    if R1 in [R2,R3,R4]:
+        move_red(R1,double_r)
+    if R2 in [R3,R4]:
+        move_red(R2,double_r)
+    if R3 == R4:
+        move_red(R3,double_r)
+    if Y1 in [Y2,Y3,Y4]:
+        move_yellow(Y1,double_y)
+    if Y2 in [Y3,Y4]:
+        move_yellow(Y2,double_y)
+    if Y3 == Y4:
+        move_yellow(Y3,double_y)
+    if R1 == R2 and R2 == R3:
+        move_red(R1,triple_r)
+    if R2 == R3 and R3 == R4:
+        move_red(R2,triple_r)
+    if R1 == R3 and R3 == R4:
+        move_red(R1,triple_r)
+    if R1 == R2 and R2 == R4:
+        move_red(R1,triple_r)
+    if Y1 == Y2 and Y2 == Y3:
+        move_yellow(Y1, triple_y)
+    if Y2 == Y3 and Y3 == Y4:
+        move_yellow(Y2, triple_y)
+    if Y1 == Y3 and Y3 == Y4:
+        move_yellow(Y1, triple_y)
+    if Y1 == Y2 and Y2 == Y4:
+        move_yellow(Y1, triple_y)
+    if R1 == R2 and R2 == R3 and R3 == R4:
+        move_red(R1,quad_r)
+    if Y1 == Y2 and Y2 == Y3 and Y3 == Y4:
+        move_yellow(Y1, quad_y)
+    if R1 - 26 != 0 and R2 - 26 != 0 and R3 - 26 != 0 and R4 - 26 != 0 and Y1 - 26 != 0 and Y2 - 26 != 0 and Y3 - 26 != 0 and Y4 - 26 != 0:
+        if R1 + 26 in [Y1, Y2, Y3, Y4]:
+            move_red(R1, r_y)
+        if R2 + 26 in [Y1, Y2, Y3, Y4]:
+            move_red(R2, r_y)
+        if R3 + 26 in [Y1, Y2, Y3, Y4]:
+            move_red(R3, r_y)
+        if R4 + 26 in [Y1, Y2, Y3, Y4]:
+            move_red(R4, r_y)
+        if R1 - 26 in [Y1, Y2, Y3, Y4]:
+            move_red(R1, r_y)
+        if R2 - 26 in [Y1, Y2, Y3, Y4]:
+            move_red(R2, r_y)
+        if R3 - 26 in [Y1, Y2, Y3, Y4]:
+            move_red(R3, r_y)
+        if R4 - 26 in [Y1, Y2, Y3, Y4]:
+            move_red(R4, r_y)
+        if R1 + 26 == Y1 and Y1 == Y2:
+            move_red(R1, y2_r1)
+        if R2 + 26 == Y1 and Y1 == Y2:
+            move_red(R2, y2_r1)
+        if R3 + 26 == Y1 and Y1 == Y2:
+            move_red(R3, y2_r1)
+        if R4 + 26 == Y1 and Y1 == Y2:
+            move_red(R4, y2_r1)
+        if R1 + 26 == Y2 and Y2 == Y3:
+            move_red(R1, y2_r1)
+        if R2 + 26 == Y2 and Y2 == Y3:
+            move_red(R2, y2_r1)
+        if R3 + 26 == Y2 and Y2 == Y3:
+            move_red(R3, y2_r1)
+        if R4 + 26 == Y2 and Y2 == Y3:
+            move_red(R4, y2_r1)
+        if R1 + 26 == Y3 and Y3 == Y4:
+            move_red(R1, y2_r1)
+        if R2 + 26 == Y3 and Y3 == Y4:
+            move_red(R2, y2_r1)
+        if R3 + 26 == Y3 and Y3 == Y4:
+            move_red(R3, y2_r1)
+        if R4 + 26 == Y3 and Y3 == Y4:
+            move_red(R4, y2_r1)
+        if R1 + 26 == Y1 and Y1 == Y3:
+            move_red(R1, y2_r1)
+        if R2 + 26 == Y1 and Y1 == Y3:
+            move_red(R2, y2_r1)
+        if R3 + 26 == Y1 and Y1 == Y3:
+            move_red(R3, y2_r1)
+        if R4 + 26 == Y1 and Y1 == Y3:
+            move_red(R4, y2_r1)
+        if R1 + 26 == Y2 and Y2 == Y4:
+            move_red(R1, y2_r1)
+        if R2 + 26 == Y2 and Y2 == Y4:
+            move_red(R2, y2_r1)
+        if R3 + 26 == Y2 and Y2 == Y4:
+            move_red(R3, y2_r1)
+        if R4 + 26 == Y2 and Y2 == Y4:
+            move_red(R4, y2_r1)
+        if R1 - 26 == Y1 and Y1 == Y2:
+            move_red(R1, y2_r1)
+        if R2 - 26 == Y1 and Y1 == Y2:
+            move_red(R2, y2_r1)
+        if R3 - 26 == Y1 and Y1 == Y2:
+            move_red(R3, y2_r1)
+        if R4 - 26 == Y1 and Y1 == Y2:
+            move_red(R4, y2_r1)
+        if R1 - 26 == Y2 and Y2 == Y3:
+            move_red(R1, y2_r1)
+        if R2 - 26 == Y2 and Y2 == Y3:
+            move_red(R2, y2_r1)
+        if R3 - 26 == Y2 and Y2 == Y3:
+            move_red(R3, y2_r1)
+        if R4 - 26 == Y2 and Y2 == Y3:
+            move_red(R4, y2_r1)
+        if R1 - 26 == Y3 and Y3 == Y4:
+            move_red(R1, y2_r1)
+        if R2 - 26 == Y3 and Y3 == Y4:
+            move_red(R2, y2_r1)
+        if R3 - 26 == Y3 and Y3 == Y4:
+            move_red(R3, y2_r1)
+        if R4 - 26 == Y3 and Y3 == Y4:
+            move_red(R4, y2_r1)
+        if R1 - 26 == Y1 and Y1 == Y3:
+            move_red(R1, y2_r1)
+        if R2 - 26 == Y1 and Y1 == Y3:
+            move_red(R2, y2_r1)
+        if R3 - 26 == Y1 and Y1 == Y3:
+            move_red(R3, y2_r1)
+        if R4 - 26 == Y1 and Y1 == Y3:
+            move_red(R4, y2_r1)
+        if R1 - 26 == Y2 and Y2 == Y4:
+            move_red(R1, y2_r1)
+        if R2 - 26 == Y2 and Y2 == Y4:
+            move_red(R2, y2_r1)
+        if R3 - 26 == Y2 and Y2 == Y4:
+            move_red(R3, y2_r1)
+        if R4 - 26 == Y2 and Y2 == Y4:
+            move_red(R4, y2_r1)
+        if Y1 + 26 == R1 and R1 == R2:
+            move_yellow(Y1, r2_y1)
+        if Y2 + 26 == R1 and R1 == R2:
+            move_yellow(Y2, r2_y1)
+        if Y3 + 26 == R1 and R1 == R2:
+            move_yellow(Y3, r2_y1)
+        if Y4 + 26 == R1 and R1 == R2:
+            move_yellow(Y4, r2_y1)
+        if Y1 + 26 == R2 and R2 == R3:
+            move_yellow(Y1, r2_y1)
+        if Y2 + 26 == R2 and R2 == R3:
+            move_yellow(Y2, r2_y1)
+        if Y3 + 26 == R2 and R2 == R3:
+            move_yellow(Y3, r2_y1)
+        if Y4 + 26 == R2 and R2 == R3:
+            move_yellow(Y4, r2_y1)
+        if Y1 + 26 == R3 and R3 == R4:
+            move_yellow(Y1, r2_y1)
+        if Y2 + 26 == R3 and R3 == R4:
+            move_yellow(Y2, r2_y1)
+        if Y3 + 26 == R3 and R3 == R4:
+            move_yellow(Y3, r2_y1)
+        if Y4 + 26 == R3 and R3 == R4:
+            move_yellow(Y4, r2_y1)
+        if Y1 + 26 == R1 and R1 == R3:
+            move_yellow(Y1, r2_y1)
+        if Y2 + 26 == R1 and R1 == R3:
+            move_yellow(Y2, r2_y1)
+        if Y3 + 26 == R1 and R1 == R3:
+            move_yellow(Y3, r2_y1)
+        if Y4 + 26 == R1 and R1 == R3:
+            move_yellow(Y4, r2_y1)
+        if Y1 + 26 == R2 and R2 == R4:
+            move_yellow(Y1, r2_y1)
+        if Y2 + 26 == R2 and R2 == R4:
+            move_yellow(Y2, r2_y1)
+        if Y3 + 26 == R2 and R2 == R4:
+            move_yellow(Y3, r2_y1)
+        if Y4 + 26 == R2 and R2 == R4:
+            move_yellow(Y4, r2_y1)
+        if Y1 - 26 == R1 and R1 == R2:
+            move_yellow(Y1, r2_y1)
+        if Y2 - 26 == R1 and R1 == R2:
+            move_yellow(Y2, r2_y1)
+        if Y3 - 26 == R1 and R1 == R2:
+            move_yellow(Y3, r2_y1)
+        if Y4 - 26 == R1 and R1 == R2:
+            move_yellow(Y4, r2_y1)
+        if Y1 - 26 == R2 and R2 == R3:
+            move_yellow(Y1, r2_y1)
+        if Y2 - 26 == R2 and R2 == R3:
+            move_yellow(Y2, r2_y1)
+        if Y3 - 26 == R2 and R2 == R3:
+            move_yellow(Y3, r2_y1)
+        if Y4 - 26 == R2 and R2 == R3:
+            move_yellow(Y4, r2_y1)
+        if Y1 - 26 == R3 and R3 == R4:
+            move_yellow(Y1, r2_y1)
+        if Y2 - 26 == R3 and R3 == R4:
+            move_yellow(Y2, r2_y1)
+        if Y3 - 26 == R3 and R3 == R4:
+            move_yellow(Y3, r2_y1)
+        if Y4 - 26 == R3 and R3 == R4:
+            move_yellow(Y4, r2_y1)
+        if Y1 - 26 == R1 and R1 == R3:
+            move_yellow(Y1, r2_y1)
+        if Y2 - 26 == R1 and R1 == R3:
+            move_yellow(Y2, r2_y1)
+        if Y3 - 26 == R1 and R1 == R3:
+            move_yellow(Y3, r2_y1)
+        if Y4 - 26 == R1 and R1 == R3:
+            move_yellow(Y4, r2_y1)
+        if Y1 - 26 == R2 and R2 == R4:
+            move_yellow(Y1, r2_y1)
+        if Y2 - 26 == R2 and R2 == R4:
+            move_yellow(Y2, r2_y1)
+        if Y3 - 26 == R2 and R2 == R4:
+            move_yellow(Y3, r2_y1)
+        if Y4 - 26 == R2 and R2 == R4:
+            move_yellow(Y4, r2_y1)
+        if R1 + 26 == Y1 and Y1 == Y2 and Y2 == Y3:
+            move_red(R1, y3_r1)
+        if R1 + 26 == Y2 and Y2 == Y3 and Y3 == Y4:
+            move_red(R1, y3_r1)
+        if R1 + 26 == Y3 and Y3 == Y4 and Y4 == Y1:
+            move_red(R1, y3_r1)
+        if R1 + 26 == Y4 and Y4 == Y1 and Y1 == Y2:
+            move_red(R1, y3_r1)
+        if R2 + 26 == Y1 and Y1 == Y2 and Y2 == Y3:
+            move_red(R2, y3_r1)
+        if R2 + 26 == Y2 and Y2 == Y3 and Y3 == Y4:
+            move_red(R2, y3_r1)
+        if R2 + 26 == Y3 and Y3 == Y4 and Y4 == Y1:
+            move_red(R2, y3_r1)
+        if R2 + 26 == Y4 and Y4 == Y1 and Y1 == Y2:
+            move_red(R2, y3_r1)
+        if R3 + 26 == Y1 and Y1 == Y2 and Y2 == Y3:
+            move_red(R3, y3_r1)
+        if R3 + 26 == Y2 and Y2 == Y3 and Y3 == Y4:
+            move_red(R3, y3_r1)
+        if R3 + 26 == Y3 and Y3 == Y4 and Y4 == Y1:
+            move_red(R3, y3_r1)
+        if R3 + 26 == Y4 and Y4 == Y1 and Y1 == Y2:
+            move_red(R3, y3_r1)
+        if R4 + 26 == Y1 and Y1 == Y2 and Y2 == Y3:
+            move_red(R4, y3_r1)
+        if R4 + 26 == Y2 and Y2 == Y3 and Y3 == Y4:
+            move_red(R4, y3_r1)
+        if R4 + 26 == Y3 and Y3 == Y4 and Y4 == Y1:
+            move_red(R4, y3_r1)
+        if R4 + 26 == Y4 and Y4 == Y1 and Y1 == Y2:
+            move_red(R4, y3_r1)
+        if R1 - 26 == Y1 and Y1 == Y2 and Y2 == Y3:
+            move_red(R1, y3_r1)
+        if R1 - 26 == Y2 and Y2 == Y3 and Y3 == Y4:
+            move_red(R1, y3_r1)
+        if R1 - 26 == Y3 and Y3 == Y4 and Y4 == Y1:
+            move_red(R1, y3_r1)
+        if R1 - 26 == Y4 and Y4 == Y1 and Y1 == Y2:
+            move_red(R1, y3_r1)
+        if R2 - 26 == Y1 and Y1 == Y2 and Y2 == Y3:
+            move_red(R2, y3_r1)
+        if R2 - 26 == Y2 and Y2 == Y3 and Y3 == Y4:
+            move_red(R2, y3_r1)
+        if R2 - 26 == Y3 and Y3 == Y4 and Y4 == Y1:
+            move_red(R2, y3_r1)
+        if R2 - 26 == Y4 and Y4 == Y1 and Y1 == Y2:
+            move_red(R2, y3_r1)
+        if R3 - 26 == Y1 and Y1 == Y2 and Y2 == Y3:
+            move_red(R3, y3_r1)
+        if R3 - 26 == Y2 and Y2 == Y3 and Y3 == Y4:
+            move_red(R3, y3_r1)
+        if R3 - 26 == Y3 and Y3 == Y4 and Y4 == Y1:
+            move_red(R3, y3_r1)
+        if R3 - 26 == Y4 and Y4 == Y1 and Y1 == Y2:
+            move_red(R3, y3_r1)
+        if R4 - 26 == Y1 and Y1 == Y2 and Y2 == Y3:
+            move_red(R4, y3_r1)
+        if R4 - 26 == Y2 and Y2 == Y3 and Y3 == Y4:
+            move_red(R4, y3_r1)
+        if R4 - 26 == Y3 and Y3 == Y4 and Y4 == Y1:
+            move_red(R4, y3_r1)
+        if R4 - 26 == Y4 and Y4 == Y1 and Y1 == Y2:
+            move_red(R4, y3_r1)
+        if Y1 + 26 == R1 and R1 == R2 and R2 == R3:
+            move_yellow(Y1, r3_y1)
+        if Y1 + 26 == R2 and R2 == R3 and R3 == R4:
+            move_yellow(Y1, r3_y1)
+        if Y1 + 26 == R3 and R3 == R4 and R4 == R1:
+            move_yellow(Y1, r3_y1)
+        if Y1 + 26 == R4 and R4 == R1 and R1 == R2:
+            move_yellow(Y1, r3_y1)
+        if Y2 + 26 == R1 and R1 == R2 and R2 == R3:
+            move_yellow(Y2, r3_y1)
+        if Y2 + 26 == R2 and R2 == R3 and R3 == R4:
+            move_yellow(Y2, r3_y1)
+        if Y2 + 26 == R3 and R3 == R4 and R4 == R1:
+            move_yellow(Y2, r3_y1)
+        if Y2 + 26 == R4 and R4 == R1 and R1 == R2:
+            move_yellow(Y2, r3_y1)
+        if Y3 + 26 == R1 and R1 == R2 and R2 == R3:
+            move_yellow(Y3, r3_y1)
+        if Y3 + 26 == R2 and R2 == R3 and R3 == R4:
+            move_yellow(Y3, r3_y1)
+        if Y3 + 26 == R3 and R3 == R4 and R4 == R1:
+            move_yellow(Y3, r3_y1)
+        if Y3 + 26 == R4 and R4 == R1 and R1 == R2:
+            move_yellow(Y3, r3_y1)
+        if Y4 + 26 == R1 and R1 == R2 and R2 == R3:
+            move_yellow(Y4, r3_y1)
+        if Y4 + 26 == R2 and R2 == R3 and R3 == R4:
+            move_yellow(Y4, r3_y1)
+        if Y4 + 26 == R3 and R3 == R4 and R4 == R1:
+            move_yellow(Y4, r3_y1)
+        if Y4 + 26 == R4 and R4 == R1 and R1 == R2:
+            move_yellow(Y4, r3_y1)
+        if Y1 - 26 == R1 and R1 == R2 and R2 == R3:
+            move_yellow(Y1, r3_y1)
+        if Y1 - 26 == R2 and R2 == R3 and R3 == R4:
+            move_yellow(Y1, r3_y1)
+        if Y1 - 26 == R3 and R3 == R4 and R4 == R1:
+            move_yellow(Y1, r3_y1)
+        if Y1 - 26 == R4 and R4 == R1 and R1 == R2:
+            move_yellow(Y1, r3_y1)
+        if Y2 - 26 == R1 and R1 == R2 and R2 == R3:
+            move_yellow(Y2, r3_y1)
+        if Y2 - 26 == R2 and R2 == R3 and R3 == R4:
+            move_yellow(Y2, r3_y1)
+        if Y2 - 26 == R3 and R3 == R4 and R4 == R1:
+            move_yellow(Y2, r3_y1)
+        if Y2 - 26 == R4 and R4 == R1 and R1 == R2:
+            move_yellow(Y2, r3_y1)
+        if Y3 - 26 == R1 and R1 == R2 and R2 == R3:
+            move_yellow(Y3, r3_y1)
+        if Y3 - 26 == R2 and R2 == R3 and R3 == R4:
+            move_yellow(Y3, r3_y1)
+        if Y3 - 26 == R3 and R3 == R4 and R4 == R1:
+            move_yellow(Y3, r3_y1)
+        if Y3 - 26 == R4 and R4 == R1 and R1 == R2:
+            move_yellow(Y3, r3_y1)
+        if Y4 - 26 == R1 and R1 == R2 and R2 == R3:
+            move_yellow(Y4, r3_y1)
+        if Y4 - 26 == R2 and R2 == R3 and R3 == R4:
+            move_yellow(Y4, r3_y1)
+        if Y4 - 26 == R3 and R3 == R4 and R4 == R1:
+            move_yellow(Y4, r3_y1)
+        if Y4 - 26 == R4 and R4 == R1 and R1 == R2:
+            move_yellow(Y4, r3_y1)
+        if R1 == R2 == Y1 + 26 == Y2 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R2 == Y1 + 26 == Y3 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R2 == Y1 + 26 == Y4 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R2 == Y2 + 26 == Y3 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R2 == Y2 + 26 == Y4 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R2 == Y3 + 26 == Y4 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R3 == Y1 + 26 == Y2 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R3 == Y1 + 26 == Y3 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R3 == Y1 + 26 == Y4 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R3 == Y2 + 26 == Y3 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R3 == Y2 + 26 == Y4 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R3 == Y3 + 26 == Y4 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R4 == Y1 + 26 == Y2 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R4 == Y1 + 26 == Y3 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R4 == Y1 + 26 == Y4 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R4 == Y2 + 26 == Y3 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R4 == Y2 + 26 == Y4 + 26:
+            move_red(R1, r2_y2)
+        if R1 == R4 == Y3 + 26 == Y4 + 26:
+            move_red(R1, r2_y2)
+        if R2 == R3 == Y1 + 26 == Y2 + 26:
+            move_red(R2, r2_y2)
+        if R2 == R3 == Y1 + 26 == Y3 + 26:
+            move_red(R2, r2_y2)
+        if R2 == R3 == Y1 + 26 == Y4 + 26:
+            move_red(R2, r2_y2)
+        if R2 == R3 == Y2 + 26 == Y3 + 26:
+            move_red(R2, r2_y2)
+        if R2 == R3 == Y2 + 26 == Y4 + 26:
+            move_red(R2, r2_y2)
+        if R2 == R3 == Y3 + 26 == Y4 + 26:
+            move_red(R2, r2_y2)
+        if R2 == R4 == Y1 + 26 == Y2 + 26:
+            move_red(R2, r2_y2)
+        if R2 == R4 == Y1 + 26 == Y3 + 26:
+            move_red(R2, r2_y2)
+        if R2 == R4 == Y1 + 26 == Y4 + 26:
+            move_red(R2, r2_y2)
+        if R2 == R4 == Y2 + 26 == Y3 + 26:
+            move_red(R2, r2_y2)
+        if R2 == R4 == Y2 + 26 == Y4 + 26:
+            move_red(R2, r2_y2)
+        if R2 == R4 == Y3 + 26 == Y4 + 26:
+            move_red(R2, r2_y2)
+        if R3 == R4 == Y1 + 26 == Y2 + 26:
+            move_red(R3, r2_y2)
+        if R3 == R4 == Y1 + 26 == Y3 + 26:
+            move_red(R3, r2_y2)
+        if R3 == R4 == Y1 + 26 == Y4 + 26:
+            move_red(R3, r2_y2)
+        if R3 == R4 == Y2 + 26 == Y3 + 26:
+            move_red(R3, r2_y2)
+        if R3 == R4 == Y2 + 26 == Y4 + 26:
+            move_red(R3, r2_y2)
+        if R3 == R4 == Y3 + 26 == Y4 + 26:
+            move_red(R3, r2_y2)
+        if R1 == R2 == Y1 - 26 == Y2 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R2 == Y1 - 26 == Y3 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R2 == Y1 - 26 == Y4 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R2 == Y2 - 26 == Y3 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R2 == Y2 - 26 == Y4 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R2 == Y3 - 26 == Y4 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R3 == Y1 - 26 == Y2 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R3 == Y1 - 26 == Y3 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R3 == Y1 - 26 == Y4 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R3 == Y2 - 26 == Y3 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R3 == Y2 - 26 == Y4 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R3 == Y3 - 26 == Y4 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R4 == Y1 - 26 == Y2 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R4 == Y1 - 26 == Y3 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R4 == Y1 - 26 == Y4 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R4 == Y2 - 26 == Y3 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R4 == Y2 - 26 == Y4 - 26:
+            move_red(R1, r2_y2)
+        if R1 == R4 == Y3 - 26 == Y4 - 26:
+            move_red(R1, r2_y2)
+        if R2 == R3 == Y1 - 26 == Y2 - 26:
+            move_red(R2, r2_y2)
+        if R2 == R3 == Y1 - 26 == Y3 - 26:
+            move_red(R2, r2_y2)
+        if R2 == R3 == Y1 - 26 == Y4 - 26:
+            move_red(R2, r2_y2)
+        if R2 == R3 == Y2 - 26 == Y3 - 26:
+            move_red(R2, r2_y2)
+        if R2 == R3 == Y2 - 26 == Y4 - 26:
+            move_red(R2, r2_y2)
+        if R2 == R3 == Y3 - 26 == Y4 - 26:
+            move_red(R2, r2_y2)
+        if R2 == R4 == Y1 - 26 == Y2 - 26:
+            move_red(R2, r2_y2)
+        if R2 == R4 == Y1 - 26 == Y3 - 26:
+            move_red(R2, r2_y2)
+        if R2 == R4 == Y1 - 26 == Y4 - 26:
+            move_red(R2, r2_y2)
+        if R2 == R4 == Y2 - 26 == Y3 - 26:
+            move_red(R2, r2_y2)
+        if R2 == R4 == Y2 - 26 == Y4 - 26:
+            move_red(R2, r2_y2)
+        if R2 == R4 == Y3 - 26 == Y4 - 26:
+            move_red(R2, r2_y2)
+        if R3 == R4 == Y1 - 26 == Y2 - 26:
+            move_red(R3, r2_y2)
+        if R3 == R4 == Y1 - 26 == Y3 - 26:
+            move_red(R3, r2_y2)
+        if R3 == R4 == Y1 - 26 == Y4 - 26:
+            move_red(R3, r2_y2)
+        if R3 == R4 == Y2 - 26 == Y3 - 26:
+            move_red(R3, r2_y2)
+        if R3 == R4 == Y2 - 26 == Y4 - 26:
+            move_red(R3, r2_y2)
+        if R3 == R4 == Y3 - 26 == Y4 - 26:
+            move_red(R3, r2_y2)
+    os.system('cls')
+    for i in board:
+        for x in i:
+            for y in x:
+                print(y, end='')
+    if R1 == 0:
+        board[2][0][1] = empty[2][0][1]
+        board[2][1][1] = empty[2][1][1]
+    if R2 == 0:
+        board[2][0][4] = empty[2][0][4]
+        board[2][1][4] = empty[2][1][4]
+    if R3 == 0:
+        board[5][0][1] = empty[5][0][1]
+        board[5][1][1] = empty[5][1][1]
+    if R4 == 0:
+        board[5][0][4] = empty[5][0][4]
+        board[5][1][4] = empty[5][1][4]
+    if Y1 == 0:
+        board[11][0][10] = empty[11][0][10]
+        board[11][1][10] = empty[11][1][10]
+    if Y2 == 0:
+        board[11][0][13] = empty[11][0][13]
+        board[11][1][13] = empty[11][1][13]
+    if Y3 == 0:
+        board[14][0][10] = empty[14][0][10]
+        board[14][1][10] = empty[14][1][10]
+    if Y4 == 0:
+        board[14][0][13] = empty[14][0][13]
+        board[14][1][13] = empty[14][1][13]
+    if token == 'R1' or R1 >= 0:
+        reset_red(R1)
+    if token == 'R2' or R2 >= 0:
+        reset_red(R2)
+    if token == 'R3' or R3 >= 0:
+        reset_red(R3)
+    if token == 'R4' or R4 >= 0:
+        reset_red(R4)
+    if token == 'Y1' or Y1 >= 0:
+        reset_yellow(Y1)
+    if token == 'Y2' or Y2 >= 0:
+        reset_yellow(Y2)
+    if token == 'Y3' or Y3 >= 0:
+        reset_yellow(Y3)
+    if token == 'Y4' or Y4 >= 0:
+        reset_yellow(Y4)
+# OTHER MECHANICS
+while 1 == 1:
+    #RED
+    if turn == 1:
+        print("RED'S TURN")
+        time.sleep(0.001)
+        roll = input('press enter to roll the dice')
+        dice = random.randrange(1,7)
+        print(dice)
+        if R1 == 0 and R2 == 0 and R3 == 0 and R4 == 0 and dice != 6:
+            turn += 1
+        elif R1 + dice > 62 and [R2,R3,R4] == [0,0,0] and dice != 6:
+            turn += 1
+        elif R2 + dice > 62 and [R1,R3,R4] == [0,0,0] and dice != 6:
+            turn += 1
+        elif R3 + dice > 62 and [R2,R1,R4] == [0,0,0] and dice != 6:
+            turn += 1
+        elif R4 + dice > 62 and [R3,R2,R1] == [0,0,0] and dice != 6:
+            turn += 1
+        elif R1 + dice > 62 and R2 + dice > 62 and [R3,R4] == [0,0] and dice != 6:
+            turn += 1
+        elif R1 + dice > 62 and R3 + dice > 62 and [R2,R4] == [0,0] and dice != 6:
+            turn += 1
+        elif R1 + dice > 62 and R4 + dice > 62 and [R2,R3] == [0,0] and dice != 6:
+            turn += 1
+        elif R2 + dice > 62 and R3 + dice > 62 and [R1,R4] == [0,0] and dice != 6:
+            turn += 1
+        elif R2 + dice > 62 and R4 + dice > 62 and [R1,R3] == [0,0] and dice != 6:
+            turn += 1
+        elif R3 + dice > 62 and R4 + dice > 62 and [R1,R2] == [0,0] and dice != 6:
+            turn += 1
+        elif R1 + dice > 62 and R2 + dice > 62 and R3 + dice > 62 and R4 == 0 and dice != 6:
+            turn += 1
+        elif R2 + dice > 62 and R3 + dice > 62 and R4 + dice >62 and R1 == 0 and dice != 6:
+            turn += 1
+        elif R1 + dice > 62 and R3 + dice > 62 and R4 + dice > 62 and R2 == 0 and dice != 6:
+            turn += 1
+        elif R1 + dice > 62 and R2 + dice > 62 and R4 + dice > 62 and R3 == 0 and dice != 6:
+            turn += 1
+        else:
+            while 1 == 1:
+                token = input('enter the token you want to move ')
+                if token not in ['R1', 'R2', 'R3', 'R4']:
+                    print('invalid token')
+                elif token == 'R1' and R1 == 0 and dice != 6:
+                    print('invalid token')
+                elif token == 'R2' and R2 == 0 and dice != 6:
+                    print('invalid token')
+                elif token == 'R3' and R3 == 0 and dice != 6:
+                    print('invalid token')
+                elif token == 'R4' and R4 == 0 and dice != 6:
+                    print('invalid token')
+                elif token == 'R1' and R1+dice >= 63:
+                    print('invalid token')
+                elif token == 'R2' and R2+dice >= 63:
+                    print('invalid token')
+                elif token == 'R3' and R3+dice >= 63:
+                    print('invalid token')
+                elif token == 'R4' and R4+dice >= 63:
+                    print('invalid token')
+                else:
+                    if token == 'R1':
+                        safe_red(R1)
+                        R1 += dice
+                    if token == 'R2':
+                        safe_red(R2)
+                        R2 += dice
+                    if token == 'R3':
+                        safe_red(R3)
+                        R3 += dice
+                    if token == 'R4':
+                        safe_red(R4)
+                        R4 += dice
+                    if dice == 6:
+                        turn = 1
+                    else:
+                        turn += 1
+                    break
+            start()
+    #YELLOW
+    if turn == 2:
+        print("YELLOW'S TURN")
+        time.sleep(0.001)
+        roll = input('press enter to roll the dice')
+        dice = random.randrange(1,7)
+        print(dice)
+        if Y1 == 0 and Y2 == 0 and Y3 == 0 and Y4 == 0 and dice != 6:
+            turn = 1
+        elif Y1  + dice > 62 and [Y2,Y3,Y4] == [0,0,0] and dice != 6:
+            turn = 1
+        elif Y2  + dice > 62 and [Y1,Y3,Y4] == [0,0,0] and dice != 6:
+            turn = 1
+        elif Y3  + dice > 62 and [Y2,Y1,Y4] == [0,0,0] and dice != 6:
+            turn = 1
+        elif Y4  + dice > 62 and [Y3,Y2,Y1] == [0,0,0] and dice != 6:
+            turn = 1
+        elif Y1  + dice > 62 and Y2  + dice > 62 and [Y3,Y4] == [0,0] and dice != 6:
+            turn = 1
+        elif Y1  + dice > 62 and Y3  + dice > 62 and [Y2,Y4] == [0,0] and dice != 6:
+            turn = 1
+        elif Y1  + dice > 62 and Y4  + dice > 62 and [Y2,Y3] == [0,0] and dice != 6:
+            turn = 1
+        elif Y2  + dice > 62 and Y3  + dice > 62 and [Y1,Y4] == [0,0] and dice != 6:
+            turn = 1
+        elif Y2  + dice > 62 and Y4  + dice > 62 and [Y1,Y3] == [0,0] and dice != 6:
+            turn = 1
+        elif Y3  + dice > 62 and Y4  + dice > 62 and [Y1,Y2] == [0,0] and dice != 6:
+            turn = 1
+        elif Y1  + dice > 62 and Y2  + dice > 62 and Y3  + dice > 62 and Y4 == 0 and dice != 6:
+            turn = 1
+        elif Y2  + dice > 62 and Y3  + dice > 62 and Y4  + dice > 62 and Y1 == 0 and dice != 6:
+            turn = 1
+        elif Y1  + dice > 62 and Y3  + dice > 62 and Y4  + dice > 62 and Y2 == 0 and dice != 6:
+            turn = 1
+        elif Y1  + dice > 62 and Y2  + dice > 62 and Y4  + dice > 62 and Y3 == 0 and dice != 6:
+            turn = 1
+        else:
+            while 1 == 1:
+                token = input('enter the token you want to move ')
+                if token not in ['Y1', 'Y2', 'Y3', 'Y4']:
+                    print('invalid token')
+                elif token == 'Y1' and Y1 == 0 and dice != 6:
+                    print('invalid token')
+                elif token == 'Y2' and Y2 == 0 and dice != 6:
+                    print('invalid token')
+                elif token == 'Y3' and Y3 == 0 and dice != 6:
+                    print('invalid token')
+                elif token == 'Y4' and Y4 == 0 and dice != 6:
+                    print('invalid token')
+                elif token == 'Y1' and Y1 + dice >= 63:
+                    print('invalid token')
+                elif token == 'Y2' and Y2 + dice >= 63:
+                    print('invalid token')
+                elif token == 'Y3' and Y3 + dice >= 63:
+                    print('invalid token')
+                elif token == 'Y4' and Y4 + dice >= 63:
+                    print('invalid token')
+                else:
+                    if token == 'Y1':
+                        safe_yellow(Y1)
+                        Y1 += dice
+                    if token == 'Y2':
+                        safe_yellow(Y2)
+                        Y2 += dice
+                    if token == 'Y3':
+                        safe_yellow(Y3)
+                        Y3 += dice
+                    if token == 'Y4':
+                        safe_yellow(Y4)
+                        Y4 += dice
+                    if dice == 6:
+                        turn = 2
+                    else:
+                        turn -= 1
+                    break
+            start()
+    if R1 == R2 == R3 == R4 == 62:
+        print('RED WINS!!!')
+        break
+    if Y1 == Y2 == Y3 == Y4 == 64:
+        print('YELLOW WINS!!!')
+        break
+    # FOR REFERENCE
+    print(R1,R2,R3,R4,Y1,Y2,Y3,Y4)
+print('Start A New Game!!!')
+
+            </code>
+        </pre>
+    </body>
+</html>
