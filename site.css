@@ -158,6 +158,10 @@ box-shadow: 0 2px 8px rgba(253,160,133,0.15); transition: background 0.2s;
 button[type="submit"]:hover {
 background: linear-gradient(to right, #85effd, #4c7cff);
 }
+.code{
+    color: black;
+    font-weight:bold;
+}
 
 
 
