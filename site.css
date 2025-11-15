@@ -18,20 +18,20 @@ th, td {
     center; padding: 10px;
 }
 tr:nth-child(odd){ 
-    background-color:#f80000;
+    background-color:#ffcccc;
 }
 thead tr{
-    background-color: #1e01fa !important;
+    background-color: #f2f67a !important;
 }
 tr:nth-child(even){ 
-    background-color:#00ff00;
+    background-color:#ffffff;
 }
 tfoot tr{
-    background-color: #00d9ff!important;
+    background-color: #f2f67a!important;
 }
 a {
 text-decoration: none;
-color: #03c2b5;
+color: #fff532;
 }
 a:hover {
 text-decoration: underline;
@@ -82,8 +82,6 @@ border: 2px solid #ffc4c4;
 border-radius: 5px;
 }
 figcaption {
-    font-weight:bold;
-    padding:50px;
 margin-top: 8px;
 font-style: italic;
 color: #000000;
@@ -111,8 +109,8 @@ width: 400px;
 }
 
 fieldset {
-border: 1px solid #4442e2; border-radius: 8px; margin-bottom: 22px; padding: 18px; background:
-#5fc1e5;
+border: 1px solid #81ffdd; border-radius: 8px; margin-bottom: 22px; padding: 18px; background:
+#f5f096;
 }
 legend {
 font-weight:900; color: #2d00df;
@@ -129,11 +127,11 @@ input:focus, textarea:focus { border: 1.5px solid #85ebfd;
 outline: none;
 }
 .profile{
-position:relative;
-left:20%;
+    position:relative;
+left: 20%;
 margin: 20px;
 border-radius: 10px;
-width: 600px;
+width: 400px;
 padding: 100px 60px;
 background-color: rgb(91, 214, 252);
 text-align: center;
@@ -150,17 +148,13 @@ border: #09024c 10px solid;
 text-align: left;
 font-size: 18px;
 }
-.btn{
-padding: 20px;
-border-radius: 15px;
-background-color: #ffa5a5;
-transition: background-color 0.2s ease-in-out;
-border: #25024c 4px solid;
-font-size: 20px;
+button {
+background: linear-gradient(to right, #65f6ef, #5896f3); border: none;
+color: #fff;
+padding: 10px 24px; margin: 10px 6px 0 0; border-radius: 5px;
+font-size: 1rem; cursor: pointer;
+box-shadow: 0 2px 8px rgba(253,160,133,0.15); transition: background 0.2s;
 }
-.btn:hover{
-background-color: #1cf0c2;
+button[type="submit"]:hover {
+background: linear-gradient(to right, #85effd, #4c7cff);
 }
-
-
-
