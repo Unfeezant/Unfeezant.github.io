@@ -158,6 +158,23 @@ box-shadow: 0 2px 8px rgba(253,160,133,0.15); transition: background 0.2s;
 button[type="submit"]:hover {
 background: linear-gradient(to right, #85effd, #4c7cff);
 }
+.skills{
+    background-color:#6dffff;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    width:800px;
+    height:auto;
+    border-radius:15px;
+    margin-bottom:50px;
+}
+.hobbies{
+    background-color:#fcff40;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    width:800px;
+    height:auto;
+    border-radius:15px;
+    margin-bottom:50px;
+}
+
 
 
 
