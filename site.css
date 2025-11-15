@@ -1,0 +1,105 @@
+body {
+font-family: 'Courier New', Courier, monospace;
+background-color: #f8f6cc;
+color: #333;
+}
+.skills {
+    list-style-image: url('');
+}
+.hobbies{
+    list-style-image: url('');
+}
+table {
+    width: 1000px;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #000000; text-align:
+    center; padding: 10px;
+}
+tr:nth-child(odd){ 
+    background-color:#f80000;
+}
+thead tr{
+    background-color: #1e01fa !important;
+}
+tr:nth-child(even){ 
+    background-color:#00ff00;
+}
+tfoot tr{
+    background-color: #00d9ff!important;
+}
+a {
+text-decoration: none;
+color: #03c2b5;
+}
+a:hover {
+text-decoration: underline;
+}
+header {
+background-color: #c203fc;
+color: #fff;
+padding: 20px 0;
+text-align: center;
+}
+header h1 {
+margin: 0;
+}
+nav ul {
+list-style: none;
+padding: 0;
+margin: 10px 0 0;
+display: flex;
+justify-content: center;
+gap: 20px;
+}
+nav li {
+display: inline;
+}
+nav a {
+color: #fffb00;
+font-weight: bold;
+}
+main {
+max-width: 900px;
+margin: 30px auto;
+padding: 0 20px;
+}
+main h2 {
+color: #300066;
+border-bottom: 2px solid #ffcaca;
+padding-bottom: 5px;
+margin-top: 40px;
+}
+figure {
+margin: 20px 0;
+text-align: center;
+}
+figure img {
+max-width: 100%;
+height: auto;
+border: 2px solid #ffc4c4;
+border-radius: 5px;
+}
+figcaption {
+margin-top: 8px;
+font-style: italic;
+color: #000000;
+}
+ul {
+margin-left: 20px;
+}
+article {
+background-color: #ffdede;
+border: 1px solid #ffd6d6;
+margin: 20px 0;
+padding: 20px;
+border-radius: 5px;
+}
+footer {
+background-color: #04b1a5;
+color: #ffd7d7;
+text-align: center;
+padding: 15px 0;
+margin-top: 40px;
+}
