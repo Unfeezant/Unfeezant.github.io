@@ -82,6 +82,7 @@ border: 2px solid #ffc4c4;
 border-radius: 5px;
 }
 figcaption {
+    padding:50px;
 margin-top: 8px;
 font-style: italic;
 color: #000000;
@@ -159,4 +160,5 @@ font-size: 20px;
 .btn:hover{
 background-color: #1cf0c2;
 }
+
 
