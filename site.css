@@ -127,6 +127,8 @@ input:focus, textarea:focus { border: 1.5px solid #85ebfd;
 outline: none;
 }
 .profile{
+position:relative;
+left:20%;
 margin: 20px;
 border-radius: 10px;
 width: 600px;
@@ -157,3 +159,4 @@ font-size: 20px;
 .btn:hover{
 background-color: #1cf0c2;
 }
+
