@@ -1,9 +1,66 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <style>
+            .one{
+                position:absolute;
+                left:40%;
+                border:2px;
+                padding:20px;
+            }
+            .two, .three, .four, .five, .six, .seven, .eight{
+                position:absolute;
+                left:30%;
+                border:2px;
+                padding:20px;
+            }
+            .one{top:100px;}
+            .two{top:1200px;}
+            .three{top:1500px;}
+            .four{top:1800px;}
+            .five{top:2300px;}
+            .six{top:3800px;}
+            .seven{top:14200px;}
+            .eight{top:16100px;}
+            p{
+                font-size:40px;
+            }
+            div{
+                background-color:#40ff60;
+                box-shadow: 10px 10px 5px #aaaaaa;
+                width:800px;
+                height:auto;
+                border-radius:15px;
+                margin-bottom:50px;
+            }
+                
+        </style>
     </head>
     <body>
+        <div class="one">
+            <p>This is the design of the classical Ludo board, which has been made with the help of a 2-D list.<br>Each box in the board is an element in the list.</p>
+        </div>
+        <div class="two">
+            <p>These are the designs of the tokens that will be moving over the board, also made with a  2-D list.</p>
+        </div>
+        <div class="three">
+            <p>The whole path of each token has been numbered to keep track of the tokens.<br>All the safe spots are corresponded to particular numbers.</p>
+        </div>
+        <div class="four">
+            <p>By satisfying these conditions, each token will be able to cut the other token.</p>
+        </div>
+        <div class="five">
+            <p>Once the token has been cut or moved forward, the board needs to reset and just remember the position of the token that was moved.</p>
+        </div>
+        <div class="six">
+            <p>After rolling the dice, this is how the pieces move.</p>
+        </div>
+        <div class="seven">
+            <p>The dice is rolled using the random library and checks if the token user selects is movable or not.</p>
+        </div>
+        <div class="eight">
+            <p>Once all the tokens are at "HOME" the colour wins.</p>
+        </div>
         <pre>
             <code>
 import random
@@ -1098,3 +1155,4 @@ print('Start A New Game!!!')
     </body>
 
 </html>
+
