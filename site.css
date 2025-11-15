@@ -103,3 +103,57 @@ text-align: center;
 padding: 15px 0;
 margin-top: 40px;
 }
+form { background:  #f8f6cc;
+padding: 32px 40px; border-radius: 12px;
+width: 400px;
+}
+
+fieldset {
+border: 1px solid #4442e2; border-radius: 8px; margin-bottom: 22px; padding: 18px; background:
+#5fc1e5;
+}
+legend {
+font-weight:900; color: #2d00df;
+}
+label {
+display: block; margin-top: 10px; margin-bottom: 5px; color: #333;
+font-size: 1rem;
+}
+input, textarea { width: 100%; padding: 8px;
+border-radius: 5px; border: 1px solid  #f8f6cc; font-size: 1rem;
+box-sizing: border-box; margin-bottom: 14px; transition: border 0.2s;
+}
+input:focus, textarea:focus { border: 1.5px solid #85ebfd;
+outline: none;
+}
+.profile{
+margin: 20px;
+border-radius: 10px;
+width: 600px;
+padding: 100px 60px;
+background-color: rgb(91, 214, 252);
+text-align: center;
+border: #0d024c 3px solid;
+}
+.top img{
+width: 55%;
+object-fit: cover;
+border-radius: 100%;
+object-position: 100% 0%;
+border: #09024c 10px solid;
+}
+.subhead li{
+text-align: left;
+font-size: 18px;
+}
+.btn{
+padding: 20px;
+border-radius: 15px;
+background-color: #ffa5a5;
+transition: background-color 0.2s ease-in-out;
+border: #25024c 4px solid;
+font-size: 20px;
+}
+.btn:hover{
+background-color: #1cf0c2;
+}
